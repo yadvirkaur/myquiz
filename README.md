@@ -73,6 +73,12 @@ eslint . --fix
 
 This command will format all files in the project using Prettier, then run Eslint to check for any linting errors and then --fix will automatically fix some of the linting errors for you.
 
+In the case of a Create React App project, where the source files are typically located in the src directory, running eslint src is a good option to limit eslint to only the source files in your project.
+
+```
+eslint src
+```
+
 8. Merge Prettier configurations: If you want to merge and override any config set with .prettierrc files, use the following option in your .eslintrc.json file:
 
 ```
