@@ -18,24 +18,11 @@ eslint --init
 
 Answer the questions as per your requirement. You can choose "React" as a framework while configuring.
 
-3. Install Prettier
-   Use the following command to install Prettier:
+3. Use the following command to install Prettier, eslint-config-prettier, eslint-plugin-prettier:
 
 ```
 npm install prettier --save-dev
-```
-
-4. Install eslint-config-prettier
-   Use the following command to install eslint-config-prettier:
-
-```
 npm install eslint-config-prettier --save-dev
-```
-
-5. Install eslint-plugin-prettier
-   Use the following command to install eslint-plugin-prettier:
-
-```
 npm install eslint-plugin-prettier --save-dev
 ```
 
@@ -46,20 +33,24 @@ npm install eslint-plugin-prettier --save-dev
 {
   "env": {
     "browser": true,
-    "es6": true,
-    "node": true
+    "es2021": true
   },
   "extends": [
     "react-app",
     "react-app/jest",
-    "plugin:react/recommended",
     "airbnb",
+    "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended"
   ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": "error",
     "prettier/prettier": [
       "error",
       {
@@ -70,6 +61,7 @@ npm install eslint-plugin-prettier --save-dev
     ]
   }
 }
+
 ```
 
 This configuration extends the "airbnb" rules and also includes the "prettier" plugin for formatting.
@@ -80,9 +72,10 @@ This configuration extends the "airbnb" rules and also includes the "prettier" p
 ```
 npx prettier --write .
 eslint .
+eslint . --fix
 ```
 
-This command will format all files in the project using Prettier and then run Eslint to check for any linting errors.
+This command will format all files in the project using Prettier, then run Eslint to check for any linting errors and then --fix will automatically fix some of the linting errors for you.
 
 8. Merge Prettier configurations
    If you want to merge and override any config set with .prettierrc files, use the following option in your .eslintrc.json file:
@@ -97,14 +90,6 @@ This command will format all files in the project using Prettier and then run Es
     }
   ]
 }
-```
-
-9. Temporarily disable prettier rule
-   If you're fixing large amounts of previously unformatted code, consider temporarily disabling the prettier/prettier rule and running Eslint and Prettier separately with the following commands:
-
-```
-eslint --fix .
-npx prettier --write .
 ```
 
 That's it! Your CRA project is now configured with Eslint using Airbnb and Prettier.
