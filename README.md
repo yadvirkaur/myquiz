@@ -1,72 +1,110 @@
-# Getting Started with Create React App
+Documentation for CRA with Eslint using Airbnb and Prettier
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CRA (Create React App) is a great way to start building a new React project quickly. Eslint is a popular tool for linting JavaScript code, and Airbnb provides a widely-used set of style guidelines. Prettier is a code formatter that can be integrated with Eslint. Here are the steps to configure your CRA project with Eslint using Airbnb and Prettier:
 
-Quizzical is a quiz app with various categories and difficulty levels from Open Trivia Database, offering a personalized experience. It provides an entertaining way to spend time, and helps to improve knowledge.
+1. Install peer dependencies
+   Use the following command to install the peer dependencies required for Airbnb configuration:
 
-## Available Scripts
+```
+npx install-peerdeps --dev eslint-config-airbnb
+```
 
-In the project directory, you can run:
+2. Initialize Eslint
+   Use the following command to initialize Eslint configuration:
 
-### `npm start`
+```
+eslint --init
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Answer the questions as per your requirement. You can choose "React" as a framework while configuring.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Install Prettier
+   Use the following command to install Prettier:
 
-### `npm test`
+```
+npm install prettier --save-dev
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Install eslint-config-prettier
+   Use the following command to install eslint-config-prettier:
 
-### `npm run build`
+```
+npm install eslint-config-prettier --save-dev
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. Install eslint-plugin-prettier
+   Use the following command to install eslint-plugin-prettier:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install eslint-plugin-prettier --save-dev
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. Update the .eslintrc.json file
+   Update the .eslintrc.json file in your project root directory with the following content:
 
-### `npm run eject`
+```
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "none"
+      }
+    ]
+  }
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This configuration extends the "airbnb" rules and also includes the "prettier" plugin for formatting.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+7. Run Eslint and Prettier
+   Use the following commands to run Eslint and Prettier:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npx prettier --write .
+eslint .
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This command will format all files in the project using Prettier and then run Eslint to check for any linting errors.
 
-## Learn More
+8. Merge Prettier configurations
+   If you want to merge and override any config set with .prettierrc files, use the following option in your .eslintrc.json file:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+{
+  "prettier/prettier": [
+    "error",
+    {
+      "singleQuote": true,
+      "parser": "flow"
+    }
+  ]
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+9. Temporarily disable prettier rule
+   If you're fixing large amounts of previously unformatted code, consider temporarily disabling the prettier/prettier rule and running Eslint and Prettier separately with the following commands:
 
-### Code Splitting
+```
+eslint --fix .
+npx prettier --write .
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+That's it! Your CRA project is now configured with Eslint using Airbnb and Prettier.
