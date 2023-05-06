@@ -94,3 +94,9 @@ eslint src
 ```
 
 That's it! Your CRA project is now configured with Eslint using Airbnb and Prettier.
+
+Few links you can go through:
+https://blog.logrocket.com/validate-react-props-proptypes/#why-validate-props-react
+https://www.youtube.com/watch?v=xinJSYiOB6Q
+https://medium.com/@pppped/extend-create-react-app-with-airbnbs-eslint-config-prettier-flow-and-react-testing-library-96627e9a9672
+https://dev.to/ankitt8/setting-up-eslint-airbnb-configuration-prettier-and-husky-pre-commit-hooks-in-cra-5dbo
